@@ -1,4 +1,9 @@
+# Patreon Scrape Bot
+
 **Overview**
+
+*Written in November 2024 to download German-learning materials from my own paid subscription.*\
+*No longer maintained and may not work with Patreon's current page layout.*
 
 This Python script uses Selenium WebDriver to automate the process of navigating a webpage, scrolling for content, and downloading files from specified links. It is designed to work with Google Chrome or any Chromium-based browser using an existing user profile to maintain sessions and avoid logins.
 
@@ -21,5 +26,3 @@ NOTE: This tool can only be used to download content that you have already paid 
 - Scrolling Mechanism: Scrolls down a webpage to load more content (useful for infinite scroll pages).
 - File Download: Identifies and clicks on downloadable links that match specified keywords.
 - Error Handling: Includes basic error handling to deal with possible download failures.
-
-
