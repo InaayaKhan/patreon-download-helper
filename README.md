@@ -1,15 +1,15 @@
-# Patreon Scrape Bot
-
-**Overview**
+# Patreon Download Helper
 
 *Written in November 2024 to download German-learning materials from my own paid subscription.*\
 *No longer maintained and may not work with Patreon's current page layout.*
 
-This Python script uses Selenium WebDriver to automate the process of navigating a webpage, scrolling for content, and downloading files from specified links. It is designed to work with Google Chrome or any Chromium-based browser using an existing user profile to maintain sessions and avoid logins.
+**Overview**
 
-The script runs in the background and allows for user interaction. Once the user presses the Enter key, it will start the process of downloading files from the page. The script is designed to be used on a page like Patreon or similar sites where downloadable content is linked via specific keywords.
+This Python script uses Selenium WebDriver to automate repetitive downloads in a logged-in browser session. It opens a page, scrolls to load more content (for example on infinite-scroll pages) and then clicks every download link that matches specified keywords. It reuses an existing Chrome profile, so the browser stays signed in and no credentials are stored in the script.
 
-NOTE: This tool can only be used to download content that you have already paid for. I do not support the redistribution of copyrighted content.
+Scrolling continues until the user presses Enter or a configurable time limit is reached. The script then starts the downloads. The browser can still be used while the script runs.
+
+This tool is intended only for content you already have access to. Redistribution of copyrighted content is not supported.
 
 **Requirements**
 
@@ -18,11 +18,23 @@ NOTE: This tool can only be used to download content that you have already paid 
 - ChromeDriver (matching the version of Google Chrome installed on your system)
 - Google Chrome browser installed with an existing user profile
 
+**Usage**
+
+1. Install Selenium: `pip install selenium`
+2. In `patreon_download_helper.py`, adjust:
+   - the Chrome binary and user-profile paths,
+   - the path to `chromedriver.exe`,
+   - the target URL,
+   - the XPath keywords that identify the download links.
+3. Run `python patreon_download_helper.py` and press Enter when enough content has loaded.
+
+Large pages can use a lot of memory, so it is best to download content in smaller batches.
+
 **Features**
 
 - Chrome Browser Automation: Automates the Chrome browser using Selenium WebDriver.
-- Custom User Profile: Utilizes an existing Chrome user profile for seamless browsing.
-- Background Key Press Listener: Waits for the user to press the Enter key before starting the downloading process.
-- Scrolling Mechanism: Scrolls down a webpage to load more content (useful for infinite scroll pages).
-- File Download: Identifies and clicks on downloadable links that match specified keywords.
-- Error Handling: Includes basic error handling to deal with possible download failures.
+- Custom User Profile: Utilizes an existing Chrome user profile to keep the session signed in.
+- Background Key Press Listener: Lets the user stop scrolling early with the Enter key and start the downloads.
+- Scroll Time Limit: Stops scrolling after a configurable duration to prevent memory overload and browser crashes.
+- File Download: Identifies and clicks on download links that match specified keywords via XPath.
+- Error Handling: Includes basic error handling so a failed link does not stop the remaining downloads.
